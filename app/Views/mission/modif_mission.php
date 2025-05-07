@@ -6,33 +6,40 @@
     <form method="post" action=" <?= url_to('update_mission') ?>">
         <fieldset>
             <legend>Modification mission</legend>
+            <!-- id mission caché -->
             <input id="ID_MISSION" name="ID_MISSION" type="hidden" value="<?= $mission['ID_MISSION'] ?>">
             
             <label for="intitule mision">Intitulé de la mission</label>
-            <input class="intitule" id="intitule mision" name="INTITULE_MISSION" type="text" value="<?= $mission['INTITULE_MISSION'] ?>" required /><br>
+            <input class="intitule" id="intitule mision" name="INTITULE_MISSION" type="text" value="<?= $mission['INTITULE_MISSION'] ?>" required />
+
             <label for="description">Description</label>
-            <textarea class="description" id="description" name="DESCRIPTION" type="textarea" value="<?= $mission['DESCRIPTION'] ?>" required ><?= $mission['DESCRIPTION'] ?></textarea><br>
+            <textarea class="description" id="description" name="DESCRIPTION" type="textarea" value="<?= $mission['DESCRIPTION'] ?>" required ><?= $mission['DESCRIPTION'] ?></textarea>
+
             <label for="date debut">Date de début</label>
-            <input id="date debut" name="DATE_DEBUT" type="date" value="<?= $mission['DATE_DEBUT'] ?>" required /><br>
+            <input id="date debut" name="DATE_DEBUT" type="date" value="<?= $mission['DATE_DEBUT'] ?>" required />
+
             <label for="date fin">Date de fin</label>
-            <input id="date fin" name="DATE_FIN" type="date" value="<?= $mission['DATE_FIN'] ?>" required /><br>
+            <input id="date fin" name="DATE_FIN" type="date" value="<?= $mission['DATE_FIN'] ?>" required />
 
             <label for="client"> Client </label>
             <select id="client" name="ID_CLIENT">
                 <option value="<?= $client['ID_CLIENT'] ?>"> <?= $client['RAISON_SOCIAL'] ?></option>
 
                 <?php
+                // liste des client
                 foreach ($listeClient as $clienttout) {
                     echo '<option value="' . $clienttout['ID_CLIENT'] . '" required>' . $clienttout['RAISON_SOCIAL'] . '</option>';
                 }
                 ?>
-            </select><br>
+            </select>
 
         </fieldset>
+
         <fieldset>
             <legend>Profil</legend>
             <?php
 
+            // liste profils de la mission
             foreach ($profilsMission as $profil) {
 
                 echo '<label>' . $profil['INTITULE_PROFIL'] . '</label>';
@@ -42,9 +49,13 @@
             ?>
 
         </fieldset>
+
+        <!-- bouton valider la modification -->
         <button><input type="submit" value="Modifier"></button>
+
     </form>
 
+    <!-- formulaire suppression profils de mission -->
     <form method="post" action=" <?= url_to('suppr_profil_mission') ?>">
         <fieldset>
             <legend>Supprimer un profil</legend>
@@ -60,6 +71,7 @@
         </fieldset>
     </form>
 
+    <!-- formulaire ajout profils de mission -->
     <form method="post" action=" <?= url_to('ajout_profil_mission') ?>">
         <fieldset>
             <legend>Ajouter un profil</legend>

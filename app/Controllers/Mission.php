@@ -4,10 +4,13 @@ namespace App\Controllers;
 
 class Mission extends BaseController
 {
+    // Attributs
     private $missionModel;
     private $clientModel;
     private $profilModel;
     private $salarieModel;
+
+    //--------------------Constructeur--------------------
 
     public function __construct()
     {
@@ -21,40 +24,46 @@ class Mission extends BaseController
         // $this->clientModel = new Client();
     }
 
-    // Methode verif auth
+    //--------------------Méthodes connexion--------------------
+
+    // Methode verification authentification
     private function isAuthorized(): bool
     {
         $user = auth()->user();
         return $user->inGroup('admin') || $user->inGroup('com');
     }
 
-    // methode deconnexion
+    // Methode deconnexion
     public function logout()
     {
         return redirect('logout');
     }
 
+    // Methode accès à phpmyadmin
     public function phpmyadmin(){
         return redirect('phpmyadmin');
     }
 
-    // methode vue list mission
+    //--------------------Methodes mission--------------------
+
+    // Methode vue list mission
     public function list()
     {
-        // verification si non RH
+        // verification si utilisateur non rhu
         if (!$this->isAuthorized()) {
             return redirect()->route('page_salarie');
         }
         $missionsFalse = $this->missionModel->findJoinAllFalse();
         $missionsTrue = $this->missionModel->findJoinAllTrue();
-        // var_dump($missionsFalse);
-        // die();
         return view('mission/liste_missions.php', [
             'listeMissionsFalse' => $missionsFalse,
             'listeMissionsTrue' => $missionsTrue,
         ]);
     }
 
+    //--------------------Methodes mission--------------------
+
+    //Metdode 
     public function mission($missionId)
     {
         if (!$this->isAuthorized()) {
