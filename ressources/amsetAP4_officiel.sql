@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 27 nov. 2024 à 07:01
--- Version du serveur : 8.3.0
--- Version de PHP : 8.2.18
+-- Généré le : dim. 11 mai 2025 à 02:24
+-- Version du serveur : 8.0.31
+-- Version de PHP : 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `amset`
 --
-
-CREATE DATABASE IF NOT EXISTS amset;
 
 -- --------------------------------------------------------
 
@@ -200,7 +198,7 @@ INSERT INTO `client` (`ID_CLIENT`, `RAISON_SOCIAL`, `CONTACT`, `EMAIL_CLIENT`, `
 (3, 'basic-fit', 'Bernard', 'Bernard@email.com', '0482945624', '123 route du sport', 69100, 'LYON', NULL),
 (4, 'Leclerc', 'Dupont', 'Dupont@email.com', '0586952312', '175 route de la ferronerie', 13766, 'MARSEILLE', NULL),
 (5, 'Ubisoft', 'Thomas', 'Thomas@email.com', '759621342', '13, chemin du parpaint', 83330, 'CASTELLET', NULL),
-(6, 'Musee de Saint Tropez', 'Petit', 'Petit@email.com', '04563487123', '123 route des pauvres', 83990, 'SAINT-TROPEZ', NULL),
+(6, 'Musee de Saint Tropez', 'Petit', 'Petit@email.com', '0456348712', '123 route des pauvres', 83990, 'SAINT-TROPEZ', NULL),
 (7, 'Steam', 'Robert', 'Robert@email.com', '0125695847', '75 route du champagne', 74360, 'ABONDANCE', NULL),
 (8, 'FNAC', 'Salva', 'Salva@email.com', '0356478524', '246 route du platiste', 74320, 'LESCHAUX', NULL),
 (9, 'Apple', 'Martinez', 'Martinez@email.com', '0586952485', '745 route de Megeve', 74120, 'MEGEVE', NULL),
@@ -488,10 +486,25 @@ DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `ID_UTILISATEUR` int NOT NULL AUTO_INCREMENT,
   `IDENTIFIANT` char(32) NOT NULL,
-  `MOT_DE_PASSE` char(20) NOT NULL,
-  `ROLE` char(32) NOT NULL,
+  `NOM` char(32) NOT NULL,
+  `PRENOM` char(32) NOT NULL,
+  `EMAIL` char(32) NOT NULL,
+  `MOT_DE_PASSE` char(32) NOT NULL,
   PRIMARY KEY (`ID_UTILISATEUR`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`ID_UTILISATEUR`, `IDENTIFIANT`, `NOM`, `PRENOM`, `EMAIL`, `MOT_DE_PASSE`) VALUES
+(1, 'txiong', 'XIONG', 'Teddy', 'teddy.xiong@amset.com', 'Txiong82Amset'),
+(2, 'msage', 'SAGE', 'Mateo', 'mateo.sage@amset.com', 'Msage82Amset'),
+(3, 'mperot', 'PEROT', 'Mathis', 'mathis.perot@amset.com', 'Mperot82Amset'),
+(4, 'bbondoux', 'BONDOUX', 'Bastian', 'bastian.bondoux@amset.com', 'Bbondoux82Amset'),
+(5, 'ezimmermann', 'ZIMMERMANN', 'Ethane', 'ethane.zimmermann@amset.com', 'Ezimmermann82Amset'),
+(6, 'pmarquez', 'MARQUEZ', 'Paul', 'paul.marquez@amset.com', 'Pmarquez82Amset'),
+(7, 'test', 'admin', 'admin', 'admin@amset.com', 'tt');
 
 --
 -- Contraintes pour les tables déchargées
