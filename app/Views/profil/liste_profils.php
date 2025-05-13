@@ -4,7 +4,6 @@
 <!-- <link rel="stylesheet" type="text/css" href="css/main.css" /> -->
 
 <body>
-    <a href=<?= url_to("create_profil") ?>><button>Ajouter profil</button></a>
     <div class="profil">
         <fieldset class="fieldlist">
             <legend>
